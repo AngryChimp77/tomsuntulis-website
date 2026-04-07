@@ -1,7 +1,8 @@
 "use client"
 
+import Image from "next/image"
 import { useState } from "react"
-import { Check, Clock, MapPin } from "lucide-react"
+import { Check, ChevronDown, ChevronUp, Clock, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const seasons = {
@@ -99,10 +100,16 @@ type SeasonKey = keyof typeof seasons
 
 export function ProgramsSection() {
   const [activeSeason, setActiveSeason] = useState<SeasonKey>("spring")
+  const [locationExpanded, setLocationExpanded] = useState(false)
   const season = seasons[activeSeason]
 
   const scrollToContact = () => {
     document.getElementById("kontakti")?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  const switchSeason = (key: SeasonKey) => {
+    setActiveSeason(key)
+    setLocationExpanded(false)
   }
 
   return (
@@ -124,7 +131,7 @@ export function ProgramsSection() {
             {(Object.keys(seasons) as SeasonKey[]).map((key) => (
               <button
                 key={key}
-                onClick={() => setActiveSeason(key)}
+                onClick={() => switchSeason(key)}
                 className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                   activeSeason === key
                     ? "bg-foreground text-background"
@@ -216,29 +223,59 @@ export function ProgramsSection() {
         </div>
 
         {/* Location card */}
-        <div className="mt-8 rounded-2xl bg-card border border-border p-6 flex flex-col sm:flex-row gap-4 items-start">
-          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-accent/10 shrink-0">
-            <MapPin className="w-5 h-5 text-accent" />
-          </div>
-          <div className="flex-1">
-            <p className="font-semibold text-foreground">{season.location.name}</p>
-            <p className="text-sm text-muted-foreground mt-0.5">{season.location.desc}</p>
-            <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-              {season.location.detail}
-            </p>
-            {season.location.href && (
-              <a
-                href={season.location.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block mt-3 text-sm font-medium text-foreground underline underline-offset-4 hover:text-muted-foreground transition-colors"
+        <div className="mt-8 rounded-2xl bg-card border border-border overflow-hidden">
+          <div className="flex flex-col sm:flex-row gap-4 items-start p-6">
+            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-accent/10 shrink-0">
+              <MapPin className="w-5 h-5 text-accent" />
+            </div>
+            <div className="flex-1">
+              <p className="font-semibold text-foreground">{season.location.name}</p>
+              <p className="text-sm text-muted-foreground mt-0.5">{season.location.desc}</p>
+              <button
+                onClick={() => setLocationExpanded(!locationExpanded)}
+                className="inline-flex items-center gap-1.5 mt-3 text-sm font-medium text-foreground border border-border rounded-md px-3 py-1.5 hover:bg-muted transition-colors"
               >
-                Skatīt vietu →
-              </a>
-            )}
-            {!season.location.href && (
-              <p className="mt-3 text-sm text-muted-foreground">Detaļas drīzumā</p>
-            )}
+                {locationExpanded ? (
+                  <>
+                    Aizvērt
+                    <ChevronUp className="w-4 h-4" />
+                  </>
+                ) : (
+                  <>
+                    Skatīt vietu
+                    <ChevronDown className="w-4 h-4" />
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+
+          <div className={locationExpanded ? "block" : "hidden"}>
+            <div className="border-t border-border">
+              <div className="relative w-full aspect-[16/9] bg-muted">
+                <Image
+                  src="/images/location.jpg"
+                  alt={season.location.name}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="px-6 pb-6 pt-4">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {season.location.detail}
+                </p>
+                {season.location.href && (
+                  <a
+                    href={season.location.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 mt-3 text-sm font-medium text-foreground underline underline-offset-4 hover:text-muted-foreground"
+                  >
+                    Apmeklēt vietni →
+                  </a>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Playfair_Display, DM_Sans } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-heading' })
+const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-sans' })
 
 export const metadata: Metadata = {
   title: 'Tommys Untulis | Pasākumi jauniešiem',
@@ -35,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="lv">
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className={`${playfair.variable} ${dmSans.variable} font-sans antialiased`}>
         {children}
         <Analytics />
       </body>

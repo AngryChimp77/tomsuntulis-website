@@ -93,7 +93,7 @@ const seasons = {
       detail:
         "Vasaras sezonā pasākumi notiek RTK skolā. Sīkāka informācija par programmu un cenām drīzumā.",
       href: null,
-      mapsUrl: "https://maps.google.com/?q=RTK+Rīgas+Tehniskā+koledža+Rīga+Latvija",
+      mapsUrl: "https://maps.google.com/?q=R%C4%ABgas+Tehnisk%C4%81+kole%C4%8D%C5%BEa+Braslas+iela+R%C4%ABga",
     },
   },
 }

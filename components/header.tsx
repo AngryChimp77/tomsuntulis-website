@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 
 const navLinks = [
   { href: "#par-mums", label: "Par mums" },
-  { href: "#pasakumi", label: "Pasākumi" },
+  { href: "#programmas", label: "Pasākumi" },
   { href: "#galerija", label: "Galerija" },
   { href: "#kontakti", label: "Kontakti" },
 ]

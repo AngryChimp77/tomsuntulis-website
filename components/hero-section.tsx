@@ -1,5 +1,4 @@
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
 
 export function HeroSection() {
   return (
@@ -26,13 +25,20 @@ export function HeroSection() {
         <p className="mt-4 sm:mt-6 md:mt-8 text-lg sm:text-xl md:text-2xl text-white/90 max-w-2xl mx-auto text-pretty leading-relaxed">
           Pasākumi un aktivitātes jauniešiem
         </p>
-        <Button
-          asChild
-          size="lg"
-          className="mt-8 sm:mt-10 md:mt-12 text-base sm:text-lg px-8 sm:px-10 py-6 bg-white text-black hover:bg-white/90 transition-colors"
-        >
-          <a href="#kontakti">Pieteikties</a>
-        </Button>
+        <div className="flex flex-col sm:flex-row items-center gap-3 mt-8 sm:mt-10 md:mt-12">
+          <a
+            href="#kontakti"
+            className="inline-flex items-center justify-center rounded-md text-base sm:text-lg px-8 py-4 bg-white text-black font-medium hover:bg-white/90 transition-colors"
+          >
+            Pieteikties
+          </a>
+          <a
+            href="#programmas"
+            className="inline-flex items-center justify-center rounded-md text-base sm:text-lg px-8 py-4 bg-transparent text-white font-medium border border-white/50 hover:bg-white/10 transition-colors"
+          >
+            Skatīt programmas
+          </a>
+        </div>
       </div>
 
       {/* Scroll Indicator */}

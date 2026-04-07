@@ -66,6 +66,7 @@ const seasons = {
       detail:
         "Pasākumi notiek skaistā lauku vidē ar plašu teritoriju, mežiem, dīķiem un aktivitāšu zonām. Ideāla vieta komandas saliedēšanai.",
       href: "https://viesunamiem.lv/josti",
+      mapsUrl: "https://maps.google.com/?q=Viesu+nams+Josti+Tukuma+novads+Latvija",
     },
   },
   summer: {
@@ -92,6 +93,7 @@ const seasons = {
       detail:
         "Vasaras sezonā pasākumi notiek RTK skolā. Sīkāka informācija par programmu un cenām drīzumā.",
       href: null,
+      mapsUrl: "https://maps.google.com/?q=RTK+Rīgas+Tehniskā+koledža+Rīga+Latvija",
     },
   },
 }
@@ -225,9 +227,15 @@ export function ProgramsSection() {
         {/* Location card */}
         <div className="mt-8 rounded-2xl bg-card border border-border overflow-hidden">
           <div className="flex flex-col sm:flex-row gap-4 items-start p-6">
-            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-accent/10 shrink-0">
+            <a
+              href={season.location.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-accent/10 shrink-0 hover:bg-accent/20 transition-colors"
+              title="Skatīt kartē"
+            >
               <MapPin className="w-5 h-5 text-accent" />
-            </div>
+            </a>
             <div className="flex-1">
               <p className="font-semibold text-foreground">{season.location.name}</p>
               <p className="text-sm text-muted-foreground mt-0.5">{season.location.desc}</p>

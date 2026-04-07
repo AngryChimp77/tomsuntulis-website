@@ -19,11 +19,14 @@ export function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-4xl px-6 sm:px-8 lg:px-12 text-center flex flex-col items-center justify-center">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight text-balance">
-          Tommys Untulis
+        <div className="inline-flex items-center border border-white/30 text-white/70 text-xs tracking-widest uppercase px-4 py-1.5 rounded-full mb-6">
+          Klases pasākumi · Latvija
+        </div>
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-[family-name:var(--font-heading)] italic text-white tracking-tight text-balance">
+          Piedzīvojumi, kas saliedē.
         </h1>
         <p className="mt-4 sm:mt-6 md:mt-8 text-lg sm:text-xl md:text-2xl text-white/90 max-w-2xl mx-auto text-pretty leading-relaxed">
-          Pasākumi un aktivitātes jauniešiem
+          Rūpīgi plānoti klases pasākumi jauniešiem — no vienas dienas izbrauciena līdz nakts piedzīvojumam.
         </p>
         <div className="flex flex-col sm:flex-row items-center gap-3 mt-8 sm:mt-10 md:mt-12">
           <a

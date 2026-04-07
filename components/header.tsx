@@ -16,10 +16,10 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/60 backdrop-blur-md border-b border-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="text-xl font-bold text-foreground">
+          <Link href="/" className="text-xl font-bold text-foreground tracking-tight">
             Tommys Untulis
           </Link>
 
@@ -29,12 +29,12 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm font-medium tracking-wide text-muted-foreground hover:text-foreground transition-colors"
               >
                 {link.label}
               </Link>
             ))}
-            <Button asChild>
+            <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground">
               <Link href="#kontakti">Pieteikties</Link>
             </Button>
           </nav>
@@ -62,13 +62,13 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm font-medium tracking-wide text-muted-foreground hover:text-foreground transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <Button asChild className="w-full">
+            <Button asChild className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
               <Link href="#kontakti" onClick={() => setIsOpen(false)}>
                 Pieteikties
               </Link>

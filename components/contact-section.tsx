@@ -43,7 +43,7 @@ export function ContactSection() {
           </a>
 
           <a
-            href="mailto:Toms.asejevs@gmail.com"
+            href="mailto:Toms.asejevs@gmail.com?subject=Jautājums%20par%20klases%20pasākumu"
             className="flex items-center gap-5 p-5 rounded-2xl bg-background/10 hover:bg-background/20 transition-colors group"
           >
             <div className="flex items-center justify-center w-12 h-12 rounded-full bg-background/10 shrink-0">

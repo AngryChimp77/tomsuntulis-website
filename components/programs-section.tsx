@@ -233,8 +233,11 @@ export function ProgramsSection() {
                 rel="noopener noreferrer"
                 className="inline-block mt-3 text-sm font-medium text-foreground underline underline-offset-4 hover:text-muted-foreground transition-colors"
               >
-                Skatīt vietu
+                Skatīt vietu →
               </a>
+            )}
+            {!season.location.href && (
+              <p className="mt-3 text-sm text-muted-foreground">Detaļas drīzumā</p>
             )}
           </div>
         </div>

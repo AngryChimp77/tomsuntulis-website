@@ -6,7 +6,7 @@ import './globals.css'
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: 'Toms Untulis | Pasākumi jauniešiem',
+  title: 'Tommys Untulis | Pasākumi jauniešiem',
   description: 'Pasākumi un aktivitātes jauniešiem - piedzīvojumi, komandas darbs un neaizmirstami mirkļi dabā.',
   generator: 'v0.app',
   icons: {

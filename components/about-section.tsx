@@ -9,9 +9,12 @@ export function AboutSection() {
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight font-[family-name:var(--font-heading)] italic">
             Cilvēki aiz pasākumiem
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-            Divi draugi ar kopīgu mērķi — radīt klases pasākumus, kurus jaunieši
-            atceras.
+        </div>
+
+        <div className="text-center">
+          <p className="text-xl md:text-2xl font-[family-name:var(--font-heading)] italic text-foreground/70 max-w-2xl mx-auto leading-relaxed">
+            "Katrs pasākums ir rūpīgi plānots, lai klase atgrieztos ar jaunām
+            atmiņām un stiprāku kopību."
           </p>
         </div>
 
@@ -30,7 +33,7 @@ export function AboutSection() {
           ].map((founder) => (
             <div
               key={founder.name}
-              className="flex flex-col items-center text-center p-8 rounded-2xl bg-card border border-border gap-4"
+              className="flex flex-col items-center text-center p-10 min-h-64 rounded-2xl bg-card border border-border gap-4"
             >
               <div className="w-20 h-20 rounded-full bg-accent/10 border-2 border-accent/30 flex items-center justify-center text-2xl font-bold text-accent font-[family-name:var(--font-heading)] italic">
                 {founder.initials}
@@ -48,12 +51,6 @@ export function AboutSection() {
           ))}
         </div>
 
-        <div className="mt-16 border-t border-border pt-10 text-center">
-          <p className="text-xl md:text-2xl font-[family-name:var(--font-heading)] italic text-foreground/70 max-w-2xl mx-auto leading-relaxed">
-            "Katrs pasākums ir rūpīgi plānots, lai klase atgrieztos ar jaunām
-            atmiņām un stiprāku kopību."
-          </p>
-        </div>
       </div>
     </section>
   )

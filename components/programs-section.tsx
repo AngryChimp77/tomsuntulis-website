@@ -1,6 +1,4 @@
 "use client"
-
-import Image from "next/image"
 import { useState } from "react"
 import { Check, ChevronDown, ChevronUp, Clock, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -260,12 +258,15 @@ export function ProgramsSection() {
 
           <div className={locationExpanded ? "block" : "hidden"}>
             <div className="border-t border-border">
-              <div className="relative w-full aspect-[16/9] bg-muted">
-                <Image
-                  src={activeSeason === "spring" ? "/images/location-josti.jpg" : "/images/location-rtk.jpg"}
+              <div className="relative w-full h-64 sm:h-80">
+                <img
+                  src={
+                    activeSeason === "spring"
+                      ? "/images/location-josti.jpg"
+                      : "/images/location-rtk.jpg"
+                  }
                   alt={season.location.name}
-                  fill
-                  className="object-cover"
+                  className="w-full h-full object-cover"
                 />
               </div>
               <div className="px-6 pb-6 pt-4">

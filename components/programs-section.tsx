@@ -262,7 +262,7 @@ export function ProgramsSection() {
             <div className="border-t border-border">
               <div className="relative w-full aspect-[16/9] bg-muted">
                 <Image
-                  src="/images/location.jpg"
+                  src={activeSeason === "spring" ? "/images/location-josti.jpg" : "/images/location-rtk.jpg"}
                   alt={season.location.name}
                   fill
                   className="object-cover"

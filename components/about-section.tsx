@@ -7,48 +7,72 @@ export function AboutSection() {
             Par mums
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight font-[family-name:var(--font-heading)] italic">
-            Cilvēki aiz pasākumiem
+            Mūsu pieeja
           </h2>
         </div>
 
         <div className="text-center">
-          <p className="text-xl md:text-2xl font-[family-name:var(--font-heading)] italic text-foreground/70 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-2xl md:text-3xl font-[family-name:var(--font-heading)] italic text-foreground max-w-2xl mx-auto leading-relaxed">
             "Katrs pasākums ir rūpīgi plānots, lai klase atgrieztos ar jaunām
             atmiņām un stiprāku kopību."
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-          {[
-            {
-              initials: "TA",
-              name: "Toms Asejevs",
-              bio: "Teksts drīzumā. Toms ir atbildīgs par pasākumu organizāciju un dalībnieku pieredzi.",
-            },
-            {
-              initials: "EU",
-              name: "Elvis Untulis",
-              bio: "Teksts drīzumā. Elvis vada programmu izstrādi un nodrošina katras dienas plūsmu.",
-            },
-          ].map((founder) => (
-            <div
-              key={founder.name}
-              className="flex flex-col items-center text-center p-10 min-h-64 rounded-2xl bg-card border border-border gap-4"
-            >
-              <div className="w-20 h-20 rounded-full bg-accent/10 border-2 border-accent/30 flex items-center justify-center text-2xl font-bold text-accent font-[family-name:var(--font-heading)] italic">
-                {founder.initials}
-              </div>
+        <div className="mt-12 max-w-3xl mx-auto">
+          <div className="border-t border-border pt-8 pb-2">
+            <div className="flex items-start gap-4">
+              <div className="w-2 h-2 rounded-full bg-accent mt-2 shrink-0" />
               <div>
-                <h3 className="text-lg font-semibold text-foreground">
-                  {founder.name}
-                </h3>
-                <p className="text-sm text-accent mt-1">Līdzdibinātājs</p>
+                <p className="font-semibold text-foreground text-base">
+                  Audzināt jaunus līderus
+                </p>
+                <p className="text-muted-foreground text-sm leading-relaxed mt-1">
+                  Mūsu pasākumi rada situācijas, kurās jaunieši mācās uzņemties
+                  atbildību, pieņemt lēmumus un vadīt citus.
+                </p>
               </div>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {founder.bio}
-              </p>
             </div>
-          ))}
+          </div>
+
+          <div className="border-t border-border pt-8 pb-2">
+            <div className="flex items-start gap-4">
+              <div className="w-2 h-2 rounded-full bg-accent mt-2 shrink-0" />
+              <div>
+                <p className="font-semibold text-foreground text-base">
+                  Sadarboties un risināt problēmas
+                </p>
+                <p className="text-muted-foreground text-sm leading-relaxed mt-1">
+                  Katrs uzdevums ir veidots tā, lai klase strādātu kopā — nevis
+                  individuāli. Tā veidojas īsta komanda.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-border pt-8 pb-2">
+            <div className="flex items-start gap-4">
+              <div className="w-2 h-2 rounded-full bg-accent mt-2 shrink-0" />
+              <div>
+                <p className="font-semibold text-foreground text-base">
+                  Pavadīt laiku jēgpilni
+                </p>
+                <p className="text-muted-foreground text-sm leading-relaxed mt-1">
+                  Mēs ticam, ka brīvais laiks var būt gan jautrs, gan vērtīgs.
+                  Katrs pasākums atstāj kaut ko, ko atcerēties.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-border mt-4" />
+          <div className="text-center mt-8">
+            <a
+              href="#programmas"
+              className="text-sm font-medium text-accent hover:underline underline-offset-4 transition-colors"
+            >
+              Skatīt programmas →
+            </a>
+          </div>
         </div>
 
       </div>

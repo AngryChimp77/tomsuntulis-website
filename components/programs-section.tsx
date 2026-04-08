@@ -258,7 +258,7 @@ export function ProgramsSection() {
 
           <div className={locationExpanded ? "block" : "hidden"}>
             <div className="border-t border-border">
-              <div className="relative w-full h-64 sm:h-80">
+              <div className="relative w-full h-56 sm:h-72 max-h-80">
                 <img
                   src={
                     activeSeason === "spring"
@@ -266,7 +266,7 @@ export function ProgramsSection() {
                       : "/images/location-rtk.jpg"
                   }
                   alt={season.location.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
               <div className="px-6 pb-6 pt-4">

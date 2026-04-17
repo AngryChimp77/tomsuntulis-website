@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react"
-import { Check, ChevronDown, ChevronUp, Clock, MapPin } from "lucide-react"
+import { Check, ChevronDown, ChevronUp, Clock, MapPin, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const seasons = {
@@ -29,7 +29,7 @@ const seasons = {
         featured: true,
         features: [
           "Pasākuma vadītāji",
-          "Pārgājiens",
+          "Pārgājiens / Sporta aktivitātes",
           "Vakara pasākums",
           "Pusdienas (specifiskus ēdienus nenodrošinām)",
           "Vakariņas (specifiskus ēdienus nenodrošinām)",
@@ -37,7 +37,7 @@ const seasons = {
           "Apmaksātu vietas īre",
           "Daudz un dažādas klasi saliedējošas atrakcijas",
           "Nakts trase",
-          "Pirts",
+          "Pirts / Kubls",
         ],
       },
       {
@@ -54,7 +54,7 @@ const seasons = {
           "Apmaksātu vietas īre",
           "Daudz un dažādas klasi saliedējošas atrakcijas",
           "Nakts trase",
-          "Pirts",
+          "Pirts / Kubls",
         ],
       },
     ],
@@ -179,6 +179,10 @@ export function ProgramsSection() {
                 <div className="mt-4 flex items-center gap-2 text-muted-foreground">
                   <Clock className="w-4 h-4 shrink-0" />
                   <span className="text-sm">{program.time}</span>
+                </div>
+                <div className="mt-2 flex items-center gap-2 text-muted-foreground">
+                  <Users className="w-4 h-4 shrink-0" />
+                  <span className="text-sm">15–25 dalībnieki</span>
                 </div>
 
                 <div className="mt-4">

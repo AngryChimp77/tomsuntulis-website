@@ -123,7 +123,7 @@ const summerPracticalInfo = [
 ]
 
 export function ProgramsSection() {
-  const [activeSeason, setActiveSeason] = useState<SeasonKey>("spring")
+  const [activeSeason, setActiveSeason] = useState<SeasonKey>("summer")
   const [locationExpanded, setLocationExpanded] = useState(false)
   const season = seasons[activeSeason]
 

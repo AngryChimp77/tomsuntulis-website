@@ -1,12 +1,25 @@
 "use client"
 import { useState } from "react"
-import { Check, ChevronDown, ChevronUp, Clock, MapPin, Users } from "lucide-react"
+import {
+  Calendar,
+  Check,
+  ChevronDown,
+  ChevronUp,
+  Clock,
+  MapPin,
+  MessageCircle,
+  Sparkles,
+  Users,
+  Wallet,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
+
+const WHATSAPP_URL = "https://wa.me/37129580288"
 
 const seasons = {
   spring: {
     label: "Maijs – Jūnijs",
-    note: "Pavasara sezona",
+    intro: "Skolas klases ekskursijas viesu namā Josti, Tukuma novads.",
     programs: [
       {
         title: "1. Programma",
@@ -69,34 +82,45 @@ const seasons = {
   },
   summer: {
     label: "Jūlijs – Augusts",
-    note: "Vasaras sezona",
-    programs: [
-      {
-        title: "Vasaras programma",
-        sub: "1.–12. klasei",
-        time: "Tiek precizēts",
-        price: null,
-        featured: false,
-        features: [
-          "Pasākuma vadītāji",
-          "Pilna dienas programma",
-          "Ēdināšana",
-          "Klasi saliedējošas aktivitātes",
-        ],
-      },
-    ],
+    intro: "Katru nedēļu jūlijā un augustā · Bērniem 10–16 gadu vecumā",
     location: {
-      name: "RTK skola",
-      desc: "Detaļas drīzumā",
+      name: "RTK regbija laukums",
+      desc: "RK Miesnieki bāze · Rīga, pie Domina T/C",
       detail:
-        "Vasaras sezonā pasākumi notiek RTK skolā. Sīkāka informācija par programmu un cenām drīzumā.",
-      href: null,
+        "Nedēļas garā dienas ekskursija notiek RTK regbija laukumā — RK Miesnieki bāzes laukumā pie Domina T/C, Rīgā. Mūsdienīga regbija infrastruktūra ar profesionālu trenera komandu.",
+      href: null as string | null,
       mapsUrl: "https://maps.google.com/?q=R%C4%ABgas+Tehnisk%C4%81+kole%C4%8D%C5%BEa+Braslas+iela+R%C4%ABga",
     },
   },
-}
+} as const
 
 type SeasonKey = keyof typeof seasons
+
+const summerSchedule = [
+  { day: "Pirmdiena", training: "Pieskāriena regbijs — ātruma izaicinājumi", activity: "Sky Park (Domina T/C)" },
+  { day: "Otrdiena", training: "Pieskāriena regbijs — veiklības izaicinājumi", activity: "Lazertag" },
+  { day: "Trešdiena", training: "Pieskāriena regbijs — spēka izaicinājumi", activity: "Bouldering (Wagon Wall)" },
+  { day: "Ceturtdiena", training: "Pieskāriena regbijs — izturības un taktika", activity: "Kino" },
+  { day: "Piektdiena", training: "—", activity: "Starptautiskas sacensības (LV / EE / LT)" },
+]
+
+const summerIncluded = [
+  "Nedēļas dienas ekskursija (Pirmd.–Ceturtd. 9:00–18:00)",
+  "Treniņi ar profesionālu treneri katru dienu",
+  "Katras dienas aktivitāte apkārtnē",
+  "Pusdienas, uzkodas, augļi, ūdens un enerģijas batoniņi",
+  "Dalība piektdienas pieskāriena turnīrā",
+  "Visi piektdienu turnīri visu jūliju un augustu",
+]
+
+const summerPracticalInfo = [
+  { icon: MapPin, text: "RTK regbija laukums, Rīga (pie Domina T/C)" },
+  { icon: Calendar, text: "Jūlijs–Augusts 2026 · Katru nedēļu" },
+  { icon: Clock, text: "Pirmd.–Ceturtd. 9:00–18:00 · Piektdiena — sacensības" },
+  { icon: Users, text: "Maksimums 20 bērni nedēļā" },
+  { icon: Sparkles, text: "Vecums: 10–16 gadi" },
+  { icon: Wallet, text: "€350 / bērns — viss iekļauts" },
+]
 
 export function ProgramsSection() {
   const [activeSeason, setActiveSeason] = useState<SeasonKey>("spring")
@@ -144,87 +168,274 @@ export function ProgramsSection() {
           </div>
         </div>
 
-        {/* Season note */}
-        <p className="mt-4 text-center text-sm text-muted-foreground">{season.note}</p>
+        {/* Season intro */}
+        <p className="mt-4 text-center text-sm text-muted-foreground max-w-2xl mx-auto px-4">
+          {season.intro}
+        </p>
 
-        {/* Program cards */}
-        <div
-          className={`mt-10 grid gap-6 ${
-            season.programs.length === 1
-              ? "grid-cols-1 max-w-sm mx-auto"
-              : "grid-cols-1 md:grid-cols-3"
-          }`}
-        >
-          {season.programs.map((program) => (
-            <div
-              key={program.title}
-              className={`relative flex flex-col rounded-2xl bg-card p-6 lg:p-8 ${
-                program.featured
-                  ? "border-2 border-accent shadow-md"
-                  : "border border-border"
-              }`}
-            >
-              {program.featured && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <span className="bg-accent text-accent-foreground text-xs font-semibold px-3 py-1 rounded-full">
-                    Populārākā
-                  </span>
-                </div>
-              )}
+        {/* Spring view: 3-card grid */}
+        {activeSeason === "spring" && (
+          <div className="mt-10 grid gap-6 grid-cols-1 md:grid-cols-3">
+            {seasons.spring.programs.map((program) => (
+              <div
+                key={program.title}
+                className={`relative flex flex-col rounded-2xl bg-card p-6 lg:p-8 ${
+                  program.featured
+                    ? "border-2 border-accent shadow-md"
+                    : "border border-border"
+                }`}
+              >
+                {program.featured && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                    <span className="bg-accent text-accent-foreground text-xs font-semibold px-3 py-1 rounded-full">
+                      Populārākā
+                    </span>
+                  </div>
+                )}
 
-              <div>
-                <h3 className="text-lg font-semibold text-foreground">{program.title}</h3>
-                <p className="text-sm text-muted-foreground mt-1">{program.sub}</p>
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground">{program.title}</h3>
+                  <p className="text-sm text-muted-foreground mt-1">{program.sub}</p>
 
-                <div className="mt-4 flex items-center gap-2 text-muted-foreground">
-                  <Clock className="w-4 h-4 shrink-0" />
-                  <span className="text-sm">{program.time}</span>
-                </div>
-                <div className="mt-2 flex items-center gap-2 text-muted-foreground">
-                  <Users className="w-4 h-4 shrink-0" />
-                  <span className="text-sm">15–25 dalībnieki</span>
-                </div>
+                  <div className="mt-4 flex items-center gap-2 text-muted-foreground">
+                    <Clock className="w-4 h-4 shrink-0" />
+                    <span className="text-sm">{program.time}</span>
+                  </div>
+                  <div className="mt-2 flex items-center gap-2 text-muted-foreground">
+                    <Users className="w-4 h-4 shrink-0" />
+                    <span className="text-sm">15–25 dalībnieki</span>
+                  </div>
 
-                <div className="mt-4">
-                  {program.price ? (
+                  <div className="mt-4 flex items-baseline gap-1">
                     <span className="text-4xl font-bold text-foreground">
                       {program.price}
                       <span className="text-2xl">€</span>
                     </span>
-                  ) : (
-                    <span className="text-lg text-muted-foreground font-medium">
-                      Cena drīzumā
+                    <span className="text-sm text-muted-foreground ml-1">/ klase</span>
+                  </div>
+                </div>
+
+                <div className="mt-6 border-t border-border pt-6 flex-1">
+                  <ul className="space-y-3">
+                    {program.features.map((feature, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <Check className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground leading-relaxed">
+                          {feature}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <Button
+                  onClick={scrollToContact}
+                  className={`mt-8 w-full ${
+                    program.featured
+                      ? "bg-accent hover:bg-accent/90 text-accent-foreground"
+                      : ""
+                  }`}
+                >
+                  Pieteikt pasākumu
+                </Button>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Summer view: hero + schedule + included/info + callout */}
+        {activeSeason === "summer" && (
+          <div className="mt-10 space-y-6">
+            {/* Hero card */}
+            <div className="rounded-2xl bg-card border-2 border-accent shadow-md p-6 sm:p-8 lg:p-10">
+              <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+                <div className="flex-1">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
+                    Vasaras Nedēļas Ekskursija Rīgā
+                  </h3>
+                  <p className="mt-2 text-base sm:text-lg text-muted-foreground font-medium">
+                    Pieskāriena Regbijs
+                  </p>
+                  <p className="mt-4 text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl">
+                    Nedēļas garā dienas ekskursija RTK regbija laukumā (RK Miesnieki bāzes
+                    laukums, pie Domina T/C, Rīgā). Pirmdien–ceturtdien 9:00–18:00. Bērni
+                    mācās spēlēt pieskāriena regbiju — bezkontakta, dinamiska komandas
+                    spēle — un katru dienu dodas uz citu aktivitāti apkārtnē.
+                  </p>
+                </div>
+                <div className="shrink-0 lg:text-right">
+                  <div className="inline-flex flex-col items-start lg:items-end bg-accent/10 rounded-xl px-5 py-3">
+                    <span className="text-3xl sm:text-4xl font-bold text-foreground">
+                      €350
                     </span>
-                  )}
+                    <span className="text-xs sm:text-sm text-muted-foreground mt-0.5">
+                      / bērns · viss iekļauts
+                    </span>
+                  </div>
                 </div>
               </div>
 
-              <div className="mt-6 border-t border-border pt-6 flex-1">
-                <ul className="space-y-3">
-                  {program.features.map((feature, i) => (
+              <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                <Button
+                  onClick={scrollToContact}
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground sm:flex-1"
+                >
+                  Pierakstīties
+                </Button>
+                <Button asChild variant="outline" className="sm:flex-1">
+                  <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    Jautāt WhatsApp
+                  </a>
+                </Button>
+              </div>
+            </div>
+
+            {/* Weekly schedule */}
+            <div className="rounded-2xl bg-card border border-border p-6 sm:p-8">
+              <h4 className="text-lg font-semibold text-foreground">Nedēļas grafiks</h4>
+
+              {/* Daily timeline */}
+              <div className="mt-4 rounded-lg bg-muted/50 border border-border p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  Dienas plāns (Pirmd.–Ceturtd.)
+                </p>
+                <div className="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
+                  <div>
+                    <p className="font-semibold text-foreground">09:00–11:00</p>
+                    <p className="text-muted-foreground mt-0.5">Rīta treniņš</p>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-foreground">11:00–14:00</p>
+                    <p className="text-muted-foreground mt-0.5">Aktivitāte</p>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-foreground">14:00–16:00</p>
+                    <p className="text-muted-foreground mt-0.5">Pusdienas</p>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-foreground">16:00–18:00</p>
+                    <p className="text-muted-foreground mt-0.5">Pēcpusdienas treniņš</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Desktop table */}
+              <div className="mt-4 hidden sm:block overflow-hidden rounded-lg border border-border">
+                <table className="w-full text-sm">
+                  <thead className="bg-muted/50">
+                    <tr className="text-left">
+                      <th className="px-4 py-3 font-semibold text-foreground">Diena</th>
+                      <th className="px-4 py-3 font-semibold text-foreground">Treniņš</th>
+                      <th className="px-4 py-3 font-semibold text-foreground">Aktivitāte</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {summerSchedule.map((row, i) => (
+                      <tr
+                        key={row.day}
+                        className={i !== summerSchedule.length - 1 ? "border-b border-border" : ""}
+                      >
+                        <td className="px-4 py-3 font-medium text-foreground">{row.day}</td>
+                        <td className="px-4 py-3 text-muted-foreground">{row.training}</td>
+                        <td className="px-4 py-3 text-muted-foreground">{row.activity}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Mobile stacked */}
+              <ul className="mt-4 sm:hidden space-y-3">
+                {summerSchedule.map((row) => (
+                  <li
+                    key={row.day}
+                    className="rounded-lg border border-border p-3"
+                  >
+                    <p className="font-semibold text-foreground text-sm">{row.day}</p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      <span className="font-medium text-foreground/80">Treniņš: </span>
+                      {row.training}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      <span className="font-medium text-foreground/80">Aktivitāte: </span>
+                      {row.activity}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Included + Practical info */}
+            <div className="grid gap-6 md:grid-cols-2">
+              <div className="rounded-2xl bg-card border border-border p-6 sm:p-8">
+                <h4 className="text-lg font-semibold text-foreground">Iekļauts</h4>
+                <ul className="mt-4 space-y-3">
+                  {summerIncluded.map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <Check className="w-4 h-4 text-accent shrink-0 mt-0.5" />
                       <span className="text-sm text-muted-foreground leading-relaxed">
-                        {feature}
+                        {item}
                       </span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <Button
-                onClick={scrollToContact}
-                className={`mt-8 w-full ${
-                  program.featured
-                    ? "bg-accent hover:bg-accent/90 text-accent-foreground"
-                    : ""
-                }`}
-              >
-                Pieteikt pasākumu
-              </Button>
+              <div className="rounded-2xl bg-card border border-border p-6 sm:p-8">
+                <h4 className="text-lg font-semibold text-foreground">Praktiskā info</h4>
+                <ul className="mt-4 space-y-3">
+                  {summerPracticalInfo.map((item, i) => {
+                    const Icon = item.icon
+                    return (
+                      <li key={i} className="flex items-start gap-3">
+                        <Icon className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground leading-relaxed">
+                          {item.text}
+                        </span>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
             </div>
-          ))}
-        </div>
+
+            {/* Vakara treniņi callout — free perk for graduates */}
+            <div className="rounded-2xl bg-accent/10 border border-accent/30 p-6 sm:p-8">
+              <div className="flex items-start gap-3">
+                <Sparkles className="w-5 h-5 text-accent shrink-0 mt-0.5" />
+                <div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h4 className="text-base sm:text-lg font-semibold text-foreground">
+                      Bezmaksas vakara treniņi nometnes absolventiem
+                    </h4>
+                    <span className="inline-flex items-center bg-accent text-accent-foreground text-xs font-semibold px-2 py-0.5 rounded-full">
+                      BEZMAKSAS
+                    </span>
+                  </div>
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                    Pēc nometnes pabeigšanas — bezmaksas vakara treniņi RTK laukumā visu vasaru.
+                  </p>
+                  <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground">
+                    <li>
+                      <span className="font-medium text-foreground/80">Pirmd. un Trešd. 18:00–19:00 </span>
+                      — fiziskās sagatavotības treniņi
+                    </li>
+                    <li>
+                      <span className="font-medium text-foreground/80">Otrd. un Ceturtd. 18:00–19:00 </span>
+                      — regbija treniņi
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Note */}
+            <p className="text-center text-xs sm:text-sm text-muted-foreground italic">
+              Iepriekšēja pieredze nav nepieciešama. Bērni sāk no nulles.
+            </p>
+          </div>
+        )}
 
         {/* Location card */}
         <div className="mt-8 rounded-2xl bg-card border border-border overflow-hidden">
